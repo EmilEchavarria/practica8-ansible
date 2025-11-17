@@ -1,0 +1,43 @@
+---
+- name: Practica 8 - Automatización de servidores
+  hosts: ubuntu_servers
+  become: yes
+
+  tasks:
+
+    - name: Actualizar paquetes APT
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Crear usuario itla
+      user:
+        name: itla
+        state: present
+        shell: /bin/bash
+
+    - name: Crear carpeta /home/ansible/app
+      file:
+        path: /home/ansible/app
+        state: directory
+        owner: ansible
+        group: ansible
+        mode: "0755"
+
+    - name: Crear archivo hola.txt
+      copy:
+        dest: /home/ansible/app/hola.txt
+        content: "Hola desde Ansible!"
+        owner: ansible
+        group: ansible
+        mode: "0644"
+
+    - name: Instalar cowsay
+      apt:
+        name: cowsay
+        state: present
+
+    - name: Instalar htop
+      apt:
+        name: htop
+        state: present
