@@ -21,3 +21,4 @@ usa Ansible para automatizar:
 docker compose up -d
 ansible-playbook playbook.yml
 "# practica8-ansible" 
+"# practica8-ansible" 
